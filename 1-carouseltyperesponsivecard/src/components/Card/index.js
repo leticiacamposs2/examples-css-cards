@@ -1,5 +1,5 @@
 import React from 'react';
-import './Card.scss';
+import './styles.scss';
 
 function Card({ title, description, image, name, linkHref, width, height, loading, className, classId }) {
     const classNameCard = `Card Card--overlay ${className}`

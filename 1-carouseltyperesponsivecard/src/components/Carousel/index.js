@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { contextCard } from '../../utils/data';
 import Card from '../../components/Card/index.js';
+import Pagination from '../../components/Pagination';
 
-import './Carousel.scss';
+import './styles.scss';
 
 function Carousel({ title, subtitle }) {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -199,6 +200,7 @@ function Carousel({ title, subtitle }) {
                   />
                 ))}
             </section>
+            <Pagination />
         </>
     )
 }

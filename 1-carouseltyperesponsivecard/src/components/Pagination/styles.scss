@@ -17,63 +17,7 @@
       }
     }
   }
-
-  .Arrow {
-    align-items: center;
-    appearance: none;
-    background: transparent;
-    border: none;
-    border-radius: 0.125rem;
-    cursor: pointer;
-    color: hsl(var(--theme-blue));
-    display: flex;
-    height: 3rem;
-    justify-content: center;
-    opacity: 1;
-    padding: 0.5rem;
-    transition: opacity 150ms, color 150ms;
-    width: 3rem;
   
-    &:hover {
-      color: hsl(var(--theme-red));
-    }
-  
-    &:focus {
-      color: hsl(var(--theme-pink));
-      outline: none;
-  
-      svg {
-        box-shadow: 0 0 0 0.125rem hsla(var(--theme-white), 1),
-          0 0 0 0.25rem currentColor;
-      }
-  
-      &:not(:focus-visible) {
-        color: hsl(var(--theme-red));
-        svg {
-          box-shadow: none;
-        }
-      }
-    }
-  
-    &[disabled] {
-      color: hsl(var(--theme-dark));
-      opacity: 0.4;
-      pointer-events: none;
-    }
-  
-    svg {
-      border-radius: 100%;
-      fill: currentColor;
-      height: 100%;
-      width: 100%;
-      transition: box-shadow 150ms;
-  
-      [dir='rtl'] & {
-        transform: scaleX(-1);
-      }
-    }
-  }
-
   .Dots {
     align-items: center;
     display: flex;
