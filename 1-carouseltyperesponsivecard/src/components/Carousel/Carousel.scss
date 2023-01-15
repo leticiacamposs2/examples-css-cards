@@ -1,0 +1,61 @@
+.Carousel {
+    --carousel-gap: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    gap: var(--carousel-gap);
+    overflow-y: hidden;
+    overflow-x: auto;
+    position: relative;
+    scroll-behavior: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    height: 50vw;
+    outline: none !important;
+    min-height: 20rem;
+    max-height: 30rem;
+  
+    &::-webkit-scrollbar {
+      display: none;
+    }
+ 
+    & > div:empty {
+      position: relative;
+  
+      &:first-child {
+        inset-inline-start: 10%;
+        margin-inline-end: calc(-1 * var(--carousel-gap));
+      }
+  
+      &:last-child {
+        inset-inline-end: 10%;
+        margin-inline-start: calc(-1 * var(--carousel-gap));
+      }
+    }
+  }
+  
+  .Carousel--single {
+    .Card {
+      --card-ratio: auto;
+      flex: 1 0 100%;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .Carousel {
+      scroll-behavior: auto;
+    }
+  }
+  
+  // Not a perfect fix but looks better in Safari 14
+  @supports not (aspect-ratio: 1/1) {
+    .Carousel {
+      .Card__media {
+        padding-block-end: 0 !important;
+      }
+      
+      .Card__image {
+        position: relative !important;
+      }
+    }
+  }

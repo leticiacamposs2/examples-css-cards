@@ -1,0 +1,133 @@
+:root {
+    --theme-blue: 200, 80%, 38%;
+    --theme-red: 350, 63%, 52%;
+    --theme-pink: 350, 100%, 69%;
+    --theme-black: 0, 7%, 9%;
+    --theme-white: 0, 0%, 100%;
+    --theme-light: 40, 100%, 97%;
+    --theme-dark: 0, 7%, 29%;
+    color: hsl(var(--theme-dark));
+    background: hsl(var(--theme-light));
+  }
+  
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+  
+  a {
+    color: hsl(var(--theme-blue));
+    transition: color 150ms, text-decoration-color 150ms;
+  
+    &:active,
+    &:visited {
+      color: hsl(var(--theme-blue));
+    }
+  
+    &:hover {
+      color: hsl(var(--theme-red));
+    }
+  
+    &:focus,
+    &:hover {
+      text-decoration-color: transparent;
+    }
+  }
+  
+  a,
+  [tabindex='-1'] {
+    &:focus {
+      outline: 0.125rem solid hsl(var(--theme-pink));
+  
+      &:not(:focus-visible) {
+        outline: none;
+      }
+    }
+  }
+   
+  .Hidden {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+  }
+  
+  // Demo styles
+  
+  @font-face {
+    font-family: 'Raleway';
+    src: url('https://assets.codepen.io/85421/Raleway-VariableFont.woff2')
+      format('woff2');
+    font-display: swap;
+    font-weight: 1 900;
+    font-style: normal;
+    unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+2000-206F;
+  }
+  
+  @font-face {
+    font-family: 'Fallback';
+    size-adjust: 104%;
+    ascent-override: 96%;
+    src: local('Arial');
+  }
+  
+  html {
+    line-height: 1.5;
+    font-family: Raleway, Fallback, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+  
+  .Main {
+    margin: 0 auto;
+    max-width: calc(90rem + 10vw);
+    padding: 1.5rem 5vw;
+    width: 100%;
+  
+    & > *:first-child {
+      margin-block-start: 0;
+    }
+  
+    & > h1 {
+      font-weight: 800;
+    }
+  
+    & > h1,
+    & > h2,
+    & > h3 {
+      line-height: 1.25;
+      margin-block: 1.5rem 1rem;
+    }
+  
+    & > ul {
+      margin-block: 1.5rem;
+      padding-inline: 2rem 0;
+  
+      li {
+        margin-block: 0.5rem;
+      }
+    }
+  
+    & > p {
+      margin-block: 1rem;
+    }
+  
+    a:not([class]) {
+      font-weight: 500;
+    }
+  }

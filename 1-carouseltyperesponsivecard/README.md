@@ -1,3 +1,9 @@
+# Carousel type responsive card
+
+![carousel-type-responsive-card](../src/assets/images/carouseltyperesponsivecard.png)
+
+Fonte: [Codepen by David Bushell](https://codepen.io/dbushell/pen/mdWGWJZ)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

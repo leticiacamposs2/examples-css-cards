@@ -1,0 +1,227 @@
+.Card {
+    aspect-ratio: var(--card-ratio);
+    flex: 1 0 auto;
+    min-height: 100%;
+    scroll-snap-align: start;
+  }
+  
+  .Card__media {
+    aspect-ratio: auto;
+  }
+
+
+  // Card pattern
+  // https://codepen.io/dbushell/full/MWpzGje
+  
+  :root {
+    --card-link-color: var(--theme-blue);
+    --card-hover-color: var(--theme-red);
+    --card-focus-color: var(--theme-pink);
+    --card-inner-focus-color: var(--theme-white);
+    --card-shadow-color: var(--theme-black);
+    --card-foreground-color: var(--theme-dark);
+    --card-background-color: var(--theme-dark);
+  }
+  
+  .Card {
+    --card-ratio: auto 1/1;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: [media-start] auto [media-end main-start] auto [main-end];
+    max-width: 100%;
+    position: relative;
+  }
+  
+  .Card__media {
+    aspect-ratio: var(--card-ratio);
+    background: hsla(var(--card-background-color), 0.5);
+    border-radius: 1rem;
+    grid-column: 1 / -1;
+    grid-row: media-start / media-end;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: -1;
+  
+    & > * {
+      border-radius: inherit;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      width: 100%;
+    }
+  }
+  
+  .Card__main {
+    align-self: end;
+    color: hsl(var(--card-foreground-color));
+    grid-column: 1 / -1;
+    grid-row: main-start / main-end;
+    padding: 1.25rem;
+  
+    [href]:not(.Card__link) {
+      position: relative;
+      z-index: 2;
+    }
+  
+    & > * {
+      margin: 0;
+    }
+  }
+  
+  .Card__link {
+    color: hsl(var(--card-link-color));
+    font-weight: 600;
+    text-decoration-line: underline;
+    text-decoration-color: hsla(var(--card-link-color), 0.2);
+    text-decoration-thickness: 0.125rem;
+    text-decoration-skip: ink;
+    text-decoration-skip-ink: all;
+    text-decoration-offset: 100%;
+  
+    &::after {
+      border: 0.125rem solid hsl(var(--card-focus-color));
+      box-shadow: inset 0 0 0 0.125rem hsla(var(--card-inner-focus-color), 1);
+      border-radius: 1rem;
+      bottom: 0;
+      content: '';
+      display: block;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: border-color 150ms, opacity 150ms;
+      z-index: 1;
+    }
+  
+    &:hover,
+    &:focus {
+      text-decoration-color: hsla(var(--card-hover-color), 1);
+  
+      &::after {
+        opacity: 1;
+      }
+    }
+  
+    &:focus {
+      outline: none;
+      text-decoration-color: currentColor;
+    }
+  }
+  
+  .Card__heading {
+    line-height: 1.25;
+    margin-block-end: 0.5rem;
+  }
+  
+  .Card--border {
+    .Card__link {
+      &::after {
+        opacity: 1;
+      }
+      
+      &:not(:focus):not(:hover) {
+        &::after {
+          border-color: hsla(var(--card-foreground-color), 0.5);
+        }
+      }
+    }
+  }
+  
+  .Card--overlay {
+    --card-shadow-color: var(--theme-black);
+    --card-foreground-color: var(--theme-white);
+    --card-background-color: var(--theme-dark);
+    --card-link-color: var(--theme-white);
+    --card-hover-color: var(--theme-white);
+  
+    grid-template-rows:
+      [media-start] 1fr
+      [overlay-start] 1rem
+      [main-start] auto
+      [main-end overlay-end media-end];
+  
+    &::before {
+      background: linear-gradient(
+        to top,
+        hsla(var(--card-shadow-color), 0.8) 20%,
+        hsla(var(--card-shadow-color), 0.3) 60%,
+        transparent
+      );
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      content: '';
+      display: block;
+      grid-column: 1 / -1;
+      grid-row: overlay-start / overlay-end;
+      overflow: hidden;
+    }
+  
+    .Card__main {
+      p {
+        text-shadow: 0 0.0625rem 0.0625rem hsl(var(--card-shadow-color));
+      }
+  
+      a {
+        color: hsl(var(--card-link-color));
+  
+        &:active,
+        &:visited {
+          color: hsl(var(--card-link-color));
+        }
+  
+        &:hover,
+        &:focus {
+          color: hsl(var(--card-hover-color));
+        }
+      }
+    }
+  }
+  
+  .Card--square {
+    --card-ratio: auto 1/1;
+  }
+  
+  .Card--photo {
+    --card-ratio: auto 4/3;
+  }
+  
+  .Card--portrait {
+    --card-ratio: auto 3/4;
+  }
+  
+  .Card--wide {
+    --card-ratio: auto 16/9;
+  }
+  
+  @supports not (aspect-ratio: 1/1) {
+    .Card__media {
+      height: 100%;
+      padding-block-end: calc(100% * (1 / 1));
+    }
+  
+    .Card--square {
+      .Card__media {
+        padding-block-end: calc(100% * (1 / 1));
+      }
+    }
+  
+    .Card--photo {
+      .Card__media {
+        padding-block-end: calc(100% * (3 / 4));
+      }
+    }
+  
+    .Card--portrait {
+      .Card__media {
+        padding-block-end: calc(100% * (4 / 3));
+      }
+    }
+  
+    .Card--wide {
+      .Card__media {
+        padding-block-end: calc(100% * (9 / 16));
+      }
+    }
+  }

@@ -2,6 +2,13 @@
 
 ### example 1:
 
-![simplecard](https://i0.wp.com/programandosolucoes.dev.br/wp-content/uploads/2021/06/card-1.png?resize=1024%2C250&ssl=1)
+![simplecard](./src/assets/images/simplecard.png)
 
 código: [simple card](./0-simplecard)
+
+---
+### example 2:
+
+![carouseltyperesponsivecard](./src/assets/images/carouseltyperesponsivecard.png)
+
+código: [carousel type responsive card](./1-carouseltyperesponsivecard)
