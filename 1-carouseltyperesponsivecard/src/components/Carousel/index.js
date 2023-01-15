@@ -8,13 +8,17 @@ import './styles.scss';
 function Carousel({ title, subtitle }) {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const [contextCards, setContextCards] = useState([]);
+    const dots = [];
+    const setDots = () => {
+      for(let i = 1; i < 8; i++)
+        dots.push({ linkHref: `#card-${i}`, description: `Slide ${i}` })
+    };
+    setDots();
 
     useEffect(() => {
         setContextCards(contextCard);
-
         document.querySelectorAll('.Carousel').forEach(($carousel) => {
-            $carousel.scrollLeft = 0;
-      
+            $carousel.scrollLeft = 0;     
             const $cards = Array.from($carousel.querySelectorAll('.Card'));
             const $pagination = $carousel.nextElementSibling;
             const [$previous, $next] = $pagination.querySelectorAll('.Arrow');
@@ -200,7 +204,7 @@ function Carousel({ title, subtitle }) {
                   />
                 ))}
             </section>
-            <Pagination />
+            <Pagination dots={dots}/>
         </>
     )
 }
